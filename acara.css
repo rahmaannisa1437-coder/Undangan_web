@@ -1,0 +1,102 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #111;
+  font-family: 'Playfair Display', serif;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+/* Container mobile */
+.mobile-container {
+  width: 390px;
+  max-width: 100%;
+  background: url('download\ \(21\).jpg') center/cover no-repeat;
+  padding: 40px 25px 50px;
+  color: #4a3b3b;
+  text-align: center;
+}
+
+/* Typography */
+.title-script {
+  font-family: 'Great Vibes', cursive;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.desc {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.italic {
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.date {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.bow {
+  width: 70px;
+  margin: 10px auto 25px;
+  display: block;
+}
+
+.small {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.venue {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.address {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+/* Gallery */
+.gallery-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  border-radius: 18px;
+  object-fit: cover;
+  height: 180px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Responsive lebih kecil */
+@media (max-width: 360px) {
+  .title-script { font-size: 30px; }
+  .desc, .italic { font-size: 16px; }
+  .date { font-size: 24px; }
+  .venue { font-size: 20px; }
+}

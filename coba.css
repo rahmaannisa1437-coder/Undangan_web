@@ -1,0 +1,610 @@
+/* RESET */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+.section{
+color:#6b4b4b; /* lebih soft */
+}
+
+body{ background:#111; display:flex; justify-content:center; align-items:flex-start; } /* MAIN MOBILE FRAME */ .mobile-frame{ width:390px; max-width:100%; min-height:100vh; background:url("download (21).jpg") center/cover no-repeat; padding:40px 20px 80px; }
+
+/* SECTION */
+.section{
+margin-bottom:80px;
+text-align:center;
+color: #CC8899;
+}
+
+/* CARD */
+.card{
+background:#f1e7ea;
+border-radius:200px 200px 40px 40px;
+padding:110px 30px 70px;
+position:relative;
+text-align:center;
+
+/* ini yang bikin beda */
+box-shadow:
+0 20px 40px rgba(0,0,0,0.08),
+0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* SHELL */
+.shell{
+width:120px;
+position:absolute;
+top:-115px;
+left:50%;
+transform:translateX(-50%);
+filter:drop-shadow(0 10px 18px rgba(0,0,0,0.2));
+}
+
+/* ================= CALENDAR ================= */
+
+.names{
+font-family:'Great Vibes', cursive;
+font-size:36px;
+color:#b8838b;
+line-height:1.3;
+margin-bottom:40px;
+}
+
+.date-title{
+font-family:'Great Vibes', cursive;
+font-size:34px;
+color:#b8838b;
+margin-bottom:30px;
+}
+
+.calendar{
+width:100%;
+}
+
+.days,
+.dates{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+text-align:center;
+}
+
+.days span{
+font-weight:600;
+margin-bottom:10px;
+}
+
+.dates span{
+padding:12px 0;
+font-size:18px;
+position:relative;
+}
+
+.love{
+font-weight:600;
+position:relative;
+z-index:1;
+}
+
+.love::before{
+content:"♡";
+position:absolute;
+font-size:64px;
+color:#e6a4ae;
+left:50%;
+top:45%;
+transform:translate(-50%,-50%);
+z-index:-1;
+}
+
+/* ================= HERO ================= */
+
+.title-script{
+font-family:'Great Vibes', cursive;
+font-size:36px;
+margin-bottom:20px;
+color:#6B4A4E;
+}
+
+.desc{
+font-size:18px;
+line-height:1.7;
+margin-bottom:18px;
+color: #4A2C2A;
+}
+
+.italic{
+font-style:italic;
+font-size:18px;
+margin-bottom:25px;
+color: #4A2C2A;
+}
+
+.date{
+font-size:28px;
+font-weight:700;
+margin-bottom:20px;
+color:#4A2C2A;
+}
+
+.bow{
+width:70px;
+margin:10px auto 25px;
+display:block;
+}
+
+.small{
+font-size:16px;
+margin-bottom:10px;
+color: #4A2C2A;
+}
+
+.venue{
+font-size:24px;
+font-weight:700;
+margin-bottom:10px;
+color: #4A2C2A;
+}
+
+.address{
+font-size:16px;
+line-height:1.6;
+margin-bottom:40px;
+color: #4A2C2A;
+}
+
+/* ================= GALLERY ================= */
+
+.gallery-title{
+font-family:'Great Vibes', cursive;
+font-size:30px;
+margin-bottom:20px;
+color: #6B4A4E;
+}
+
+.gallery-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
+}
+
+.gallery-grid img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:18px;
+box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+.gallery-grid img:hover{
+transform:scale(1.05);
+transition:0.3s;
+}
+
+/* ================= PLAN OF THE DAY ================= */
+
+.mobile-wrapper{
+width:100%;
+position:relative;
+}
+
+.plan-header{
+position:relative;
+margin-bottom:30px;
+}
+
+.plan-arch{
+position:absolute;
+top:-80px;
+left:50%;
+transform:translateX(-50%);
+width:100%;
+height:120px;
+pointer-events:none;
+}
+
+.plan-shell{
+width:110px;
+position:absolute;
+top:-130px;
+left:50%;
+transform:translateX(-50%);
+}
+
+.plan-title{
+font-family:'Great Vibes', cursive;
+font-size:44px;
+color:#c79aa3;
+margin-top:10px;
+margin-bottom:30px;
+}
+
+/* TIMELINE */
+
+.timeline{
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.item{
+margin:22px 0;
+color: #4A2C2A;
+}
+
+.icon{
+width:76px;
+height:76px;
+background:#fff;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:auto;
+box-shadow:0 12px 24px rgba(0,0,0,0.12);
+}
+
+.icon img{
+width:55px;
+}
+
+.time{
+margin-top:12px;
+font-size:18px;
+color:#5b4a4a;
+}
+
+.item h3{
+font-size:24px;
+font-style:italic;
+margin-top:6px;
+color:#4a3a3a;
+}
+
+.line{
+width:2px;
+height:30px;
+background:#e3d9dc;
+}
+
+.pearl{
+width:20px;
+height:20px;
+border-radius:50%;
+background:radial-gradient(circle,#ffeef3,#d8aeb8);
+margin:4px 0;
+box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* BOTTOM BOW */
+
+.bottom-bow{
+position:absolute;
+left:50%;
+bottom:-65px;
+transform:translateX(-50%);
+width:110px;
+filter:drop-shadow(0 10px 18px rgba(0,0,0,0.2));
+}
+
+/* ================= DRESS CODE ================= */
+
+.palette{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:15px;
+  margin-top:30px;
+}
+
+/* GAMBAR JADI BULAT */
+.palette img{
+  width:70px;
+  height:70px;
+  object-fit:cover;
+  border-radius:50%;
+  box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* AGAR BARIS KEDUA DI TENGAH */
+.palette img:nth-child(4),
+.palette img:nth-child(5){
+  margin-top:10px;
+}
+
+.palette img:hover{
+transform:scale(1.08);
+transition:0.3s;
+}
+
+.ribbon{
+width:90px;
+position:absolute;
+bottom:-35px;
+left:50%;
+transform:translateX(-50%);
+}
+
+.save{
+text-align:center;
+margin:40px 0 20px;
+font-family:'Great Vibes', cursive;
+font-size:35px;
+color:#4b3b3b;
+}
+
+/* COUNTDOWN */
+
+.countdown{
+margin:25px auto;
+display:flex;
+gap:15px;
+justify-content:center;
+
+/* glass effect */
+background:rgba(255,255,255,0.25);
+padding:15px 25px;
+border-radius:50px;
+
+backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+.time{
+flex:1;
+}
+
+.circle{
+width:55px;
+height:55px;
+border-radius:50%;
+
+background:#ffffff;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:18px;
+font-weight:600;
+color:#2e3a46;
+
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+.time span{
+font-size:13px;
+font-style:italic;
+color:#6b4b4b;
+font-family:'Playfair Display', serif;
+}
+
+/* FLOATING PEARLS */
+
+.pearls-left,
+.pearls-right{
+position:absolute;
+top:0;
+width:120px;
+height:100%;
+pointer-events:none;
+overflow:hidden;
+}
+
+.pearls-left{ left:0; }
+.pearls-right{ right:0; }
+
+.floating-pearl{
+position:absolute;
+border-radius:50%;
+background:radial-gradient(circle,#fff1f5,#e4bcc6);
+opacity:0.9;
+animation:floatUp linear infinite;
+}
+
+@keyframes floatUp{
+from{
+transform:translateY(110vh);
+opacity:0;
+}
+to{
+transform:translateY(-20vh);
+opacity:1;
+}
+}
+
+/* RESPONSIVE */
+
+@media(max-width:420px){
+.mobile-frame{
+width:100%;
+}
+}
+
+@media(max-width:360px){
+.title-script{font-size:30px;}
+.desc,.italic{font-size:16px;}
+.date{font-size:24px;}
+.venue{font-size:20px;}
+}
+
+/* SHELL - posisi */
+.shell {
+  position: absolute;
+  top: -115px;
+  left: 50%;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.2));
+}
+
+/* SHELL - ukuran */
+.shell-img {
+  width: 120px;
+}
+
+.shell-dress{
+width:125px;
+position:absolute;
+top:-55px;
+left:50%;
+transform:translateX(-50%);
+z-index:2;
+}
+
+/* ================= GREETING ================= */
+
+.greeting-card{
+background:#eee6e8;
+border-radius:220px 220px 20px 20px;
+padding:60px 25px 70px;
+text-align:center;
+position:relative;
+margin-top:40px;
+}
+
+.greeting-card h1{
+font-family:'Great Vibes',cursive;
+font-size:34px;
+color:#c07c86;
+margin-bottom:20px;
+}
+
+.subtitle{
+color:#999;
+margin-bottom:10px;
+text-align:left;
+}
+
+.greeting-card input,
+.greeting-card textarea{
+width:100%;
+border:2px solid #c88a90;
+border-radius:20px;
+padding:12px;
+margin:10px 0;
+background:transparent;
+font-size:14px;
+outline:none;
+}
+
+.greeting-card textarea{
+height:100px;
+resize:none;
+}
+
+.submit-btn{
+margin-top:10px;
+padding:10px 30px;
+border-radius:20px;
+border:2px solid #c88a90;
+background:transparent;
+font-size:16px;
+color:#555;
+cursor:pointer;
+}
+
+
+/* ================= SHELL GREETING ================= */
+
+.shell-greeting{
+position:absolute;
+top: -45px;
+left:50%;
+transform:translateX(-50%);
+width:100px;
+}
+
+
+/* ================= GIFT CARD ================= */
+
+.gift-card{
+margin-top:40px;
+background:#eee6e8;
+border-radius:20px;
+padding:40px 25px;
+text-align:center;
+position:relative;
+}
+
+.gift-card h2{
+font-family:'Great Vibes',cursive;
+color:#c07c86;
+font-size:28px;
+margin-bottom:10px;
+}
+
+.gift-card p{
+color:#555;
+margin-bottom:20px;
+}
+
+.gift-btn{
+padding:12px 40px;
+border-radius:25px;
+border:2px solid #c88a90;
+background:transparent;
+font-size:16px;
+cursor:pointer;
+}
+
+.flowers{
+position:absolute;
+right:-10px;
+bottom:-10px;
+width:80px;
+}
+
+#greetingList{
+margin-top:20px;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.greeting-bubble{
+background:#ffffff;
+padding:12px 15px;
+border-radius:20px;
+max-width:80%;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+position:relative;
+}
+
+.greeting-bubble::after{
+content:"";
+position:absolute;
+bottom:-8px;
+left:20px;
+width:15px;
+height:15px;
+background:#fff;
+transform:rotate(45deg);
+}
+
+.greeting-name{
+font-weight:600;
+color:#c07c86;
+margin-bottom:3px;
+}
+
+.greeting-text{
+font-size:14px;
+color:#555;
+}
+
+#musicBtn{
+position:fixed;
+bottom:20px;
+right:20px;
+width:50px;
+height:50px;
+border-radius:50%;
+border:none;
+background:#ffffff;
+font-size:20px;
+cursor:pointer;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}

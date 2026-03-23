@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Wedding Invitation</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+        }
+
+        /* Full-screen satin background canvas */
+        #satinCanvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .screen {
+            position: relative;
+            z-index: 1;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Arch card */
+        .card {
+            width: min(78vw, 300px);
+            background: rgba(253, 243, 246, 0.90);
+            border-radius: 999px 999px 28px 28px;
+            padding: 0 28px 38px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow:
+                0 12px 40px rgba(175, 110, 130, 0.20),
+                0 2px 8px rgba(175, 110, 130, 0.12),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.65);
+            animation: fadeUp .85s cubic-bezier(.22, 1, .36, 1) both;
+            backdrop-filter: blur(2px);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floral canvas */
+        .floral-wrap {
+            margin-top: -28px;
+            margin-bottom: 14px;
+            width: 120px;
+            height: 120px;
+            animation: floatBob 4s ease-in-out infinite;
+        }
+
+        #floralCanvas {
+            width: 120px;
+            height: 120px;
+            filter: drop-shadow(0 5px 12px rgba(190, 100, 130, .28));
+        }
+
+        @keyframes floatBob {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+
+        .names {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(1.55rem, 6vw, 1.9rem);
+            color: #b56a82;
+            line-height: 1.35;
+        }
+
+        .amp {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(1.3rem, 5vw, 1.5rem);
+            color: #c9899e;
+            display: block;
+            line-height: 1.1;
+        }
+
+        .divider {
+            width: 55px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #c9899e, transparent);
+            margin: 16px auto 14px;
+        }
+
+        .dear {
+            font-size: clamp(.82rem, 3.2vw, .95rem);
+            color: #b56a82;
+            letter-spacing: .04em;
+            margin-bottom: 18px;
+        }
+
+        .btn {
+            background: #c4919e;
+            color: #fff;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(.85rem, 3.5vw, .95rem);
+            font-weight: 500;
+            letter-spacing: .06em;
+            padding: 11px 34px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(175, 110, 130, .32);
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .btn:active {
+            transform: scale(.97);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background satin canvas -->
+    <canvas id="satinCanvas"></canvas>
+
+    <div class="screen">
+        <div class="card">
+            <div class="floral-wrap">
+                <canvas id="floralCanvas" width="240" height="240"></canvas>
+            </div>
+            <div class="names">
+                Rafael Dirgantara<br>
+                <span class="amp">&amp;</span>
+                Aurelia Zahira
+            </div>
+            <div class="divider"></div>
+            <p class="dear">Dear Mr. Julian</p>
+            <button class="btn" onclick="alert('Opening Invitation…')">Open Invitation</button>
+        </div>
+    </div>
+
+    <script>
+        /* ── 1. SATIN BACKGROUND ─────────────────────────────────────────────── */
+        (function () {
+            const canvas = document.getElementById('satinCanvas');
+            const ctx = canvas.getContext('2d');
+
+            function resize() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                drawSatin();
+            }
+
+            function drawSatin() {
+                const W = canvas.width, H = canvas.height;
+                ctx.clearRect(0, 0, W, H);
+
+                /* Base gradient */
+                const base = ctx.createLinearGradient(0, 0, W, H);
+                base.addColorStop(0.00, '#e8c2cb');
+                base.addColorStop(0.25, '#f4d9e0');
+                base.addColorStop(0.50, '#edd0d9');
+                base.addColorStop(0.75, '#e2b8c4');
+                base.addColorStop(1.00, '#f0cdd6');
+                ctx.fillStyle = base;
+                ctx.fillRect(0, 0, W, H);
+
+                /* Satin wave folds – multiple bezier curves with semi-transparent white/pink */
+                const folds = [
+                    { x1: W * .0, y1: H * .15, cpx1: W * .25, cpy1: H * .02, cpx2: W * .55, cpy2: H * .32, x2: W, y2: H * .10, alpha: .12, width: 80 },
+                    { x1: 0, y1: H * .45, cpx1: W * .30, cpy1: H * .28, cpx2: W * .70, cpy2: H * .62, x2: W, y2: H * .40, alpha: .10, width: 100 },
+                    { x1: 0, y1: H * .70, cpx1: W * .20, cpy1: H * .55, cpx2: W * .65, cpy2: H * .85, x2: W, y2: H * .68, alpha: .09, width: 90 },
+                    { x1: 0, y1: H * .88, cpx1: W * .35, cpy1: H * .75, cpx2: W * .75, cpy2: H * .98, x2: W, y2: H * .84, alpha: .08, width: 70 },
+                    /* Shadow folds */
+                    { x1: W * .1, y1: 0, cpx1: W * .35, cpy1: H * .18, cpx2: W * .5, cpy2: H * .4, x2: W * .6, y2: H * .55, alpha: .07, width: 60, shadow: true },
+                    { x1: W * .55, y1: 0, cpx1: W * .70, cpy1: H * .22, cpx2: W * .85, cpy2: H * .50, x2: W, y2: H * .65, alpha: .06, width: 50, shadow: true },
+                ];
+
+                folds.forEach(f => {
+                    ctx.beginPath();
+                    ctx.moveTo(f.x1, f.y1);
+                    ctx.bezierCurveTo(f.cpx1, f.cpy1, f.cpx2, f.cpy2, f.x2, f.y2);
+                    ctx.strokeStyle = f.shadow
+                        ? `rgba(170,100,120,${f.alpha})`
+                        : `rgba(255,255,255,${f.alpha + .08})`;
+                    ctx.lineWidth = f.width;
+                    ctx.stroke();
+                });
+
+                /* Soft highlight blobs */
+                const hl = [
+                    { x: W * .15, y: H * .20, r: W * .35, c: 'rgba(255,235,240,0.28)' },
+                    { x: W * .80, y: H * .75, r: W * .30, c: 'rgba(255,225,235,0.22)' },
+                    { x: W * .50, y: H * .05, r: W * .25, c: 'rgba(255,245,248,0.18)' },
+                ];
+                hl.forEach(h => {
+                    const g = ctx.createRadialGradient(h.x, h.y, 0, h.x, h.y, h.r);
+                    g.addColorStop(0, h.c);
+                    g.addColorStop(1, 'transparent');
+                    ctx.fillStyle = g;
+                    ctx.fillRect(0, 0, W, H);
+                });
+
+                /* Fine sheen lines (simulate weave) */
+                ctx.save();
+                for (let i = 0; i < H; i += 4) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, i);
+                    ctx.lineTo(W, i + W * 0.08);
+                    ctx.strokeStyle = `rgba(255,255,255,${0.012 + (Math.sin(i * 0.08) * .006)})`;
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+                ctx.restore();
+            }
+
+            window.addEventListener('resize', resize);
+            resize();
+        })();
+
+
+        /* ── 2. FLORAL PNG ───────────────────────────────────────────────────── */
+        (function () {
+            const c = document.getElementById('floralCanvas');
+            const ctx = c.getContext('2d');
+            const W = 240, H = 240;
+            c.width = W; c.height = H;
+
+            /* helper */
+            function ellipse(x, y, rx, ry, rot, color, alpha) {
+                ctx.save();
+                ctx.globalAlpha = alpha || 1;
+                ctx.translate(x, y);
+                ctx.rotate(rot);
+                ctx.beginPath();
+                ctx.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
+                ctx.fillStyle = color;
+                ctx.fill();
+                ctx.restore();
+            }
+            function circle(x, y, r, color, alpha) {
+                ctx.save();
+                ctx.globalAlpha = alpha || 1;
+                ctx.beginPath();
+                ctx.arc(x, y, r, 0, Math.PI * 2);
+                ctx.fillStyle = color;
+                ctx.fill();
+                ctx.restore();
+            }
+            function line(x1, y1, x2, y2, color, w, alpha) {
+                ctx.save();
+                ctx.globalAlpha = alpha || 1;
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.strokeStyle = color;
+                ctx.lineWidth = w;
+                ctx.stroke();
+                ctx.restore();
+            }
+            function petal(cx, cy, rx, ry, rot, baseColor, highlightColor) {
+                ctx.save();
+                ctx.translate(cx, cy);
+                ctx.rotate(rot);
+                /* petal shape */
+                ctx.beginPath();
+                ctx.ellipse(0, -ry * .15, rx, ry, 0, 0, Math.PI * 2);
+                const g = ctx.createRadialGradient(0, -ry * .4, 2, 0, -ry * .15, ry);
+                g.addColorStop(0, highlightColor);
+                g.addColorStop(1, baseColor);
+                ctx.fillStyle = g;
+                ctx.globalAlpha = .9;
+                ctx.fill();
+                /* vein */
+                ctx.beginPath();
+                ctx.moveTo(0, ry * .8);
+                ctx.quadraticCurveTo(2, -ry * .1, 0, -ry * .9);
+                ctx.strokeStyle = 'rgba(180,90,115,.4)';
+                ctx.lineWidth = 1.2;
+                ctx.globalAlpha = .5;
+                ctx.stroke();
+                ctx.restore();
+            }
+
+            /* ── LEAVES ── */
+            function leaf(cx, cy, lx, ly, color) {
+                ctx.save();
+                ctx.globalAlpha = .72;
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.quadraticCurveTo(lx + 18, ly - 8, lx, ly);
+                ctx.quadraticCurveTo(lx - 18, ly + 8, cx, cy);
+                ctx.fillStyle = color;
+                ctx.fill();
+                ctx.restore();
+            }
+
+            leaf(120, 175, 78, 148, '#9ec89a');
+            leaf(120, 175, 162, 148, '#9ec89a');
+            leaf(120, 180, 90, 200, '#afd6a0');
+            leaf(120, 180, 150, 200, '#afd6a0');
+            leaf(120, 170, 55, 170, '#b0d4a8');
+            leaf(120, 170, 185, 170, '#b0d4a8');
+
+            /* ── SMALL WHITE BLOSSOMS (side) ── */
+            // left blossom
+            for (let a = 0; a < 5; a++) {
+                const ang = (a / 5) * Math.PI * 2;
+                ctx.save();
+                ctx.globalAlpha = .9;
+                ctx.beginPath();
+                ctx.ellipse(68 + Math.cos(ang) * 11, 145 + Math.sin(ang) * 10, 5, 9, ang, 0, Math.PI * 2);
+                ctx.fillStyle = '#fff5f7';
+                ctx.fill();
+                ctx.restore();
+            }
+            circle(68, 145, 5, '#f9c8d5', .95);
+
+            // right blossom
+            for (let a = 0; a < 5; a++) {
+                const ang = (a / 5) * Math.PI * 2;
+                ctx.save();
+                ctx.globalAlpha = .88;
+                ctx.beginPath();
+                ctx.ellipse(172 + Math.cos(ang) * 10, 148 + Math.sin(ang) * 9, 4.5, 8, ang, 0, Math.PI * 2);
+                ctx.fillStyle = '#fff5f7';
+                ctx.fill();
+                ctx.restore();
+            }
+            circle(172, 148, 4.5, '#f9c8d5', .95);
+
+            // tiny buds
+            for (let a = 0; a < 5; a++) {
+                const ang = (a / 5) * Math.PI * 2;
+                ctx.save(); ctx.globalAlpha = .8;
+                ctx.beginPath();
+                ctx.ellipse(48 + Math.cos(ang) * 7, 168 + Math.sin(ang) * 6, 3, 6, ang, 0, Math.PI * 2);
+                ctx.fillStyle = '#fff0f4'; ctx.fill(); ctx.restore();
+            }
+            circle(48, 168, 3.5, '#f9c8d5', .9);
+
+            for (let a = 0; a < 5; a++) {
+                const ang = (a / 5) * Math.PI * 2;
+                ctx.save(); ctx.globalAlpha = .78;
+                ctx.beginPath();
+                ctx.ellipse(192 + Math.cos(ang) * 7, 170 + Math.sin(ang) * 6, 3, 6, ang, 0, Math.PI * 2);
+                ctx.fillStyle = '#fff0f4'; ctx.fill(); ctx.restore();
+            }
+            circle(192, 170, 3.5, '#f9c8d5', .88);
+
+            /* ── MAIN LILY ── */
+            const cx = 120, cy = 115;
+            const petalDefs = [
+                { rot: 0, base: '#dd8faa', hi: '#f2b8cb' },
+                { rot: Math.PI / 3, base: '#d4849f', hi: '#ecafc4' },
+                { rot: -Math.PI / 3, base: '#d4849f', hi: '#ecafc4' },
+                { rot: Math.PI * .66, base: '#c97a96', hi: '#e5a5bc' },
+                { rot: -Math.PI * .66, base: '#c97a96', hi: '#e5a5bc' },
+                { rot: Math.PI, base: '#cc7e99', hi: '#e8a8bf' },
+            ];
+            petalDefs.forEach(p => petal(cx, cy, 14, 42, p.rot, p.base, p.hi));
+
+            /* center */
+            const cg = ctx.createRadialGradient(cx, cy, 2, cx, cy, 14);
+            cg.addColorStop(0, '#fce8ee');
+            cg.addColorStop(1, '#e9a0b8');
+            circle(cx, cy, 14, '#e9a0b8');
+            ctx.save();
+            ctx.beginPath(); ctx.arc(cx, cy, 14, 0, Math.PI * 2);
+            ctx.fillStyle = cg; ctx.fill();
+            ctx.restore();
+            circle(cx, cy, 7, '#f7cad8', .9);
+
+            /* stamens */
+            const stamenAngles = [0, Math.PI / 3, Math.PI * 2 / 3, Math.PI, Math.PI * 4 / 3, Math.PI * 5 / 3];
+            stamenAngles.forEach(a => {
+                const ex = cx + Math.cos(a - Math.PI / 2) * 22;
+                const ey = cy + Math.sin(a - Math.PI / 2) * 22;
+                line(cx, cy, ex, ey, '#d4799a', 1, .55);
+                circle(ex, ey, 3, '#e8a0b5', .85);
+            });
+
+            /* pollen dots */
+            for (let i = 0; i < 8; i++) {
+                const a = (i / 8) * Math.PI * 2, r = 5;
+                circle(cx + Math.cos(a) * r, cy + Math.sin(a) * r, 1.2, '#c06080', .7);
+            }
+        })();
+    </script>
+</body>
+
+</html>

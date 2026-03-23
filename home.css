@@ -1,0 +1,112 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Playfair Display', serif;
+  background:#000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+}
+
+/* Frame iPhone */
+.mobile-frame{
+  width:390px;
+  height:844px;
+  background:url('download\ \(21\).jpg') center/cover no-repeat;
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  padding-bottom:40px;
+}
+
+/* Card Lengkung */
+.card{
+  width:90%;
+  background:#e9dde1;
+  border-radius:220px 220px 0 0;
+  padding:70px 30px 40px;
+  text-align:center;
+  position:relative;
+}
+
+/* Shell Ornament */
+.shell{
+  width:120px;
+  position:absolute;
+  top:-120px;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+/* Nama */
+.names{
+  font-family:'Great Vibes', cursive;
+  font-size:36px;
+  color:#b8838b;
+  line-height:1.3;
+  margin-bottom:40px;
+}
+
+/* Tanggal Judul */
+.date-title{
+  font-family:'Great Vibes', cursive;
+  font-size:34px;
+  color:#b8838b;
+  margin-bottom:30px;
+}
+
+/* Kalender */
+.calendar{
+  width:100%;
+}
+
+.days, .dates{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  text-align:center;
+}
+
+.days span{
+  font-weight:600;
+  color:#000;
+  margin-bottom:10px;
+}
+
+.dates span{
+  padding:12px 0;
+  font-size:18px;
+  position:relative;
+}
+
+/* Heart Highlight */
+.love{
+  position:relative;
+  font-weight:600;
+  z-index:1;
+}
+
+.love::before{
+  content:"♡"; /* outline heart */
+  position:absolute;
+  font-size:64px;
+  color:#e6a4ae;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  z-index:-1;
+  line-height: -1;
+}
+
+/* Responsive */
+@media(max-width:420px){
+  .mobile-frame{
+    width:100%;
+    height:100vh;
+  }
+}
+

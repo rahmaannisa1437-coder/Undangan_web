@@ -1,0 +1,137 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Playfair Display', serif;
+  background:#000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+}
+
+.mobile{
+  width:390px;
+  min-height:100vh;
+  /* FIX: hapus backslash pada nama file */
+  background:url("download (21).jpg") center/cover no-repeat;
+  padding:30px 20px 60px;
+}
+
+/* CARD */
+.card{
+  background:#e9dde1;
+  border-radius:220px 220px 0 0;
+  padding:80px 30px 70px;
+  text-align:center;
+  position:relative;
+}
+
+/* Shell */
+.shell{
+  width:85px;
+  position:absolute;
+  top:-40px;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+/* Title */
+.title{
+  font-family:'Great Vibes', cursive;
+  font-size:46px;
+  color:#b8838b;
+  margin-bottom:20px;
+}
+
+/* Description */
+.desc{
+  font-style:italic;
+  font-size:20px;
+  color:#4b3b3b;
+  line-height:1.8;
+  margin-bottom:18px;
+}
+
+/* Palette */
+.palette{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  justify-items:center;
+}
+
+.palette img{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+/* Ribbon */
+.ribbon{
+  width:90px;
+  position:absolute;
+  bottom:-35px;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+/* SAVE DATE */
+.save{
+  text-align:center;
+  margin:40px 0 20px;
+  font-family:'Great Vibes', cursive;
+  font-size:35px;
+  color:#4b3b3b;
+}
+
+/* COUNTDOWN BOX */
+.countdown{
+  background:rgba(255,255,255,0.4);
+  backdrop-filter:blur(6px);
+  border-radius:40px;
+  padding:20px 15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  text-align:center;
+}
+
+/* Tambahan agar tetap horizontal rapi */
+.time{
+  flex:1;
+}
+
+/* Circle pearl */
+.circle{
+  width:65px;
+  height:65px;
+  border-radius:50%;
+  background:radial-gradient(circle at 30% 30%, #fff, #e5e5e5);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  font-weight:600;
+  color:#2e3a46;
+  margin:0 auto 6px;
+}
+
+.time span{
+  font-family:'Great Vibes', cursive;
+  font-size:20px;
+  color:#6d6d6d;
+}
+
+/* Responsive full mobile */
+@media(max-width:420px){
+  .mobile{
+    width:100%;
+  }
+}

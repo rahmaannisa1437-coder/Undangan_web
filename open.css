@@ -1,0 +1,105 @@
+/* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+/* BODY */
+body{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+
+  /* BACKGROUND PNG SATIN */
+  background:url("bg-satin.png") no-repeat center/cover;
+
+  font-family:'Cormorant Garamond', serif;
+}
+
+/* MOBILE FRAME */
+.mobile{
+  width:390px;
+  height:844px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+/* CARD */
+.card{
+  width:100%;
+  height:92%;
+  background:rgba(255, 245, 247, 0.95);
+  border-radius:220px 220px 25px 25px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+
+  padding:60px 25px 40px;
+
+  box-shadow:
+    0 20px 40px rgba(180,120,140,0.2),
+    inset 0 0 0 1px rgba(255,255,255,0.6);
+}
+
+/* FLOWER PNG */
+.flower{
+  width:130px;
+  margin-bottom:20px;
+}
+
+/* NAMA */
+.names{
+  font-family:'Great Vibes', cursive;
+  font-size:34px;
+  color:#c08a93;
+  line-height:1.4;
+}
+
+.names span{
+  display:block;
+  font-size:26px;
+  margin:5px 0;
+}
+
+/* GARIS */
+.divider{
+  width:60px;
+  height:1px;
+  background:#c08a93;
+  opacity:0.5;
+  margin:20px 0;
+}
+
+/* TAMU */
+.dear{
+  font-size:16px;
+  color:#c08a93;
+  margin-top:30px;
+  letter-spacing:1px;
+}
+
+/* BUTTON */
+.btn{
+  margin-top:15px;
+  padding:14px 35px;
+  border:none;
+  border-radius:30px;
+  background:#d6aab2;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+
+  box-shadow:0 10px 20px rgba(0,0,0,0.1);
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:#c08a93;
+  transform:translateY(-2px);
+}
